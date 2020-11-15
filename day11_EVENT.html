@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EVENT</title>
+    </head>
+    <body>
+        <h1>SRSLY, JANGAN DI KLIK!</h1>
+        <button onclick="OnButtonClickMe()">CLICK ME</button>
+        <button onclick="OnButtonReset()">RESET</button>
+
+        <button>ZOOM OUT TEXT</button>
+        <button>ZOOM IN TEXT</button>
+
+        <button>COUNT ME</button>
+
+        <h1 id="count">COUNT : 0</h1>
+        <br>
+
+        <button>+</button>
+        <h1 id="tambahkurang">0</h1>
+        <button> - </button>
+        
+        <br><br>
+        <button>SHOW</button>
+    </body>
+<script>
+    // EVENT = Kejadian, terjadi kapan?
+    // EVENT dlm konteks ini adalah suatu kejadian yg trjd didlm halaman website kita yg berhub dgn 
+    // interaksi user.
+    // INTERAKSINYA => click mouse, enter keyboardbutton, scroll, doubleclick, dll
+    // BRDSRKAN EVENT AKIBAT INTERAKSI, KITA AKAN MEMBERIKAN SUATU FEEDBACK
+    // FEEDBACK DLM BENTUK => perubahan element kah, konten atau style atau yg lain, brdskan apa
+    //                        yg dilakukan user.
+    // REVIEW
+    // ADA 2 CARA DALAM EVENT
+    // 1# PAKAI ATRIBUT ONCLICK di ELEMENNYA => event dibuat bersamaan dgn element
+    function OnButtonClickMe () {
+        console.log("BUTTON SUDAH DI KLIK")
+
+        // access element yg mau dimodif ()
+        let h1 = document.body.firstElementChild
+
+        // modifikasi konten
+        h1.textContent = 'TOLD YOU, DONT CLICK'
+    }
+
+    function OnButtonReset () {
+        console.log('BUTTON RESET DI KLIK')
+
+        // access element yg mau di modifikasi (h1)
+        let h1 = document.body.firstElementChild
+
+        // modifikasi konten
+        h1.textContent = 'SRSLY, JANGAN DI KLIK'
+    }
+
+    // REVIEW
+    // 2# addEventListener() => bikin dulu elementnya baru di event
+    // access dulu 
+    let button = document.body.getElementsByTagName('button')
+    //let btnZoomOut = document.body.getElementsByTagName('button')[2]
+    button[2].addEventListener("click", function () {
+        console.log('BUTTON ZOOM OUT TEXT DI CLICK')
+
+        // MODIFIKASI : MEMPERKECIL UKURAN TEXT
+        let h1 = document.body.firstElementChild
+        h1.style.fontSize ='16px'
+    })
+
+    button[3].addEventListener("click", function () {
+        console.log('BUTTON ZOOM IN TEXT DI CLICK')
+
+        // MODIFIKASI KONTEN
+        let h1 = document.body.firstElementChild
+        h1.style.fontSize = '32px'
+    })
+
+    // REVIEW
+    // CARA MENGHITUNG BERAPA KALI BUTTON 'COUNT ME' DI KLIK
+    button[4].addEventListener("click", OnBtnCountMe)
+
+    let count = 0
+    function OnBtnCountMe () {
+        count++
+        console.log(`${count} KALI CLICK`)
+
+        // access element 'COUNT: 0' tiap di click nambah
+        let h1 = document.getElementById("count")
+        h1.textContent = `COUNT : ${count}`
+    }
+
+    // NOTE
+    // INCREMENT & DECREMENT
+    let tambah = 0
+    let h1 = document.getElementById("tambahkurang")
+    button[5].addEventListener("click", ClickNambah)
+
+    function ClickNambah () {
+        tambah++
+        console.log(`${tambah}`)
+
+        // access element 
+        //let h1 = document.getElementById("tambahkurang") karena sama dibikin global aja
+        h1.textContent = `${tambah}`
+    }
+
+    // 
+    button[6].addEventListener("click", () => {
+        tambah --
+        //let h1 = document.getElementById('tambahkurang')
+        h1.textContent = `${tambah}`
+    })
+
+    // NOTE
+    // CASE : UPDATE ELEMENT at given time or interval
+    const celebrate = () => {
+        let h1 = document.createElement("h1")
+        h1.textContent = "CELEBRATION🎈"
+
+        // pakai append() //
+        document.body.append(h1)
+    }
+
+    button[7].addEventListener("click", () => setTimeout (celebrate, 5000))
+
+</script>
+</html>

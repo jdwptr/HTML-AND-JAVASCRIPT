@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SOLVE IT #9</title>
+    </head>
+    <body style="text-align: center;">
+    <h1 style="text-align: center;">Kalkulator Sederhana</h1>
+
+    <br>
+    <label for="angkasatu">Masukan Angka 1 :</label>
+    <input type="number" placeholder="Masukan Angka"/>
+    <br>
+
+    <br>
+    <label for="angka2">Masukan Angka 2 :</label>
+    <input type="number" placeholder="Masukan Angka"/>
+    <br>
+
+    <br>
+    <button>Kali X</button>
+    <button>Bagi :</button>
+    <button>Tambah +</button>
+    <button>Kurang - </button>
+    <br>
+    <br>
+    <button>Modulus %</button>
+    <button>Pangkat ^</button>
+
+    <div id="Hasil" style="font-weight: bold;"><br><h1></h1></div>
+    </body>
+    <script>
+        // get all value inside body
+        let input = document.body.getElementsByTagName("input")
+        //console.log('input', input)
+        let btn = document.body.getElementsByTagName("button")
+        //console.log('button', btn)
+        let div = document.getElementById("Hasil")
+        
+        btn[0].addEventListener("click", () => {
+            let kali = input[0].valueAsNumber * input[1].valueAsNumber
+            div.innerHTML = `${input[0].value} X ${input[1].value} = ${kali}`
+
+            //reset input value
+            input[0].value =''
+            input[1].value =''
+        })
+
+        btn[1].addEventListener("click", () => {
+            let bagi = input[0].valueAsNumber / input[1].valueAsNumber
+            div.innerHTML = `${input[0].value} / ${input[1].value} = ${bagi}`
+
+            input[0].value =''
+            input[1].value =''
+        })
+
+        btn[2].addEventListener("click", () => {
+            let tambah = input[0].valueAsNumber + input[1].valueAsNumber
+            div.innerHTML = `${input[0].value} + ${input[1].value} = ${tambah}`
+
+            input[0].value =''
+            input[1].value =''
+        })
+
+        btn[3].addEventListener("click", () => {
+            let kurang = input[0].valueAsNumber - input[1].valueAsNumber
+            div.innerHTML = `${input[0].value} - ${input[1].value} = ${kurang}`
+
+            input[0].value =''
+            input[1].value =''
+        })
+
+        btn[4].addEventListener("click", () => {
+            let modulus = input[0].valueAsNumber % input[1].valueAsNumber
+            div.innerHTML = `${input[0].value} % ${input[1].value} = ${modulus}`
+
+            input[0].value =''
+            input[1].value =''
+        })
+
+        btn[5].addEventListener("click", () => {
+            let pangkat = input[0].valueAsNumber ** input[1].valueAsNumber
+            div.innerHTML = `${input[0].value} <sup>${input[1].value}</sup> = ${pangkat}`
+
+            input[0].value =''
+            input[1].value =''
+        })
+    </script>
+</html>

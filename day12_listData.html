@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DISPLAY LIST DATA</title>
+    </head>
+    <body>
+        <h1>ADD LIST BELANJA</h1>
+        <input type="text" placeholder="Produk yang Ingin Dibeli" id="produk"/>
+        <button onclick="OnBtnAdd()">ADD</button>
+
+        <h1>DAFTAR BELANJA</h1>
+        <ul id="list"></ul> 
+    </body>
+    <script>
+        let daftarBelanja = [
+            'Pensil',
+            'Buku Tulis', 
+            'Mouse Pad', 
+            'LCD Monitor'
+            ]
+
+            // tampilkan data di array dlm btk <li>
+            let ul = document.getElementById("list")
+            console.log('ul', ul)
+
+            // Dapetin value dr setiap item/element di dlm array
+            // lalu kita masukan ke dlm <ul>
+            // pakai looping
+
+            // REVIEW
+            // NOTE : innerHTML akan menyebabkan halaman kita ditulis ulang
+            // makanya dibikinin var list buat nampung, nembak diluar
+            // SUpaya gak berat, kalo data banyak, bayangin ke refresh 1000x kalo data nya 1000
+
+            function showlist () {
+                let list = ''
+                for (let i = 0; i < daftarBelanja.length; i++) {
+                list += `<li>${daftarBelanja[i]}&nbsp&nbsp<button id="btndel${i}">X</button></li>`
+
+                }
+                ul.innerHTML = list
+            }
+            showlist()
+
+            // REVIEW
+            // NOTE
+            // MAU ADD LIST BARU
+            // INI KAN MANUAL
+            // daftarBelanja.push("Kamera Digital")
+            // showlist()
+
+            // daftarBelanja.push('iPhone')
+
+            // REVIEW
+            // NOTE
+            // GIMANA KALAU MAU MINTA INPUT NYA DARI USER
+            // add list baru dari input user
+
+            function OnBtnAdd () {
+                let input = document.getElementById('produk')
+                console.log('input', input)
+
+                console.log('button di klik')
+
+                // get value dari input
+                console.log('test value', input.value)
+
+                // Masukan value ke daftar belanja
+                daftarBelanja.push(input.value)
+                console.log('dafbel', daftarBelanja)
+
+                // tampilkan list nya
+                showlist()
+
+                // hapus value di input supaya keapus muncul yg baru
+                input.value = ''
+            }
+
+            // // CARA U/ MENGHAPUS ITEM DI LIST
+            // daftarBelanja.splice(1, 1) // (index berapa, jumlah mau diapus brp)
+            // console.log(daftarBelanja)
+
+            showlist()
+            
+            function OnBtnDel (index) {
+                console.log(`btn del ke ${index}`)
+
+                // delete item di array daftar belanja berdasarkan index
+                daftarBelanja.splice(index, 1)
+        
+                // refresh list
+                showlist()
+            }
+
+            // let btnDel = document.getElementById("btndel")
+            // console.log(btnDel)
+
+            // btnDel.addEventListener ("Click" () => {
+
+            // })
+    </script>
+</html>

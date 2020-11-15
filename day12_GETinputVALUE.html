@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>INPUT VALUE</title>
+    </head>
+    <body>
+        <h1>INPUT :</h1>
+        <form id="personal-data">
+            <input id="nama" type="text" placeholder="Masukan Nama Lengkap"/>
+            <input id="umur" type ='number' placeholder="Masukan Umur"/>
+            <input id="email" type="email" placeholder="Masukan Email"/>
+            <input id="pass" type="password" placeholder="Masukan Password"/>
+        </form>
+
+        <br>
+        <button onclick="OnBtnSubmit()">SUBMIT</button>
+        <br>
+        <br>
+        
+        <!-- RADIO BUTTON / CHECKBOX / DIKASIH NAME SAMA BIAR GABISA DIKLIK SEMUA-->
+        <!-- dikasih checked di slh satu radio, spy make sure ada yg terpilih kalo ga dipilih -->
+        <!-- kalau user lupa milih, jd keluar JCWM, kalo dipilih dan sama pun tetep keluar -->
+        <form id="radio">
+            <input type="radio" id="JCWM" name="program" value="JCWM" checked> JCWM
+            <input type="radio" id="JCDS" name="program" value="JCDS"> JCDS
+            <input type="radio" id="JCUIUX" name="program" value="JCUIUX"> JCUIUX
+            <input type="radio" id="JCDM" name="program" value="JCDM"> JCDM
+        </form>
+        <br>
+        <button onclick="OnBtnPilih()">PILIH</button>
+
+
+        <h1>OUTPUT :</h1>
+        <div id='output'></div>
+    </body>
+    <script>
+        // REVIEW
+        // GET VALUE DR BEBERAPA TYPE INPUT :
+        // INPUT TYPE : TEXT, EMAIL, NUMBER, PASSWORD, TELEPHONE, SEARCH, URL
+        // HASIL DATA TYPE VALUENYA => 'STRING'
+
+        // CARA GET VALUE
+        // DAPATKAN AKSES KE ELEMENT INPUT
+        // let input = document.body.getElementsByTagName("input") // HTML Collection
+        // console.log('input', input)
+
+        // console.log(input[0].value) // jgn kyk gini, hasilnya pasti kosong, krn kan belom di input
+
+        // SOLUSI : AMBIL INPUT SAAT BUTTON SUBMIT DI KLIK
+        // function OnBtnSubmit () {
+        //     // GET VALUE NYA
+        //     console.log(input[0].value) // Nama Lengkap
+        //     console.log(typeof input[0].value) // String
+           
+        //     console.log(input[1].value) // Umur
+        //     console.log(typeof input[1].value) // String
+
+        //     console.log(input[2].value) // Email
+        //     console.log(typeof input[2].value) // String
+
+        //     console.log(input[3].value) // Password
+        //     console.log(typeof input[3].value) //String
+        // }
+
+        // REVIEW
+        // NOTE
+        // SOLUSI PART 2
+        let form = document.getElementById("personal-data")
+        console.log('form', form)
+
+        function OnBtnSubmit () {
+            console.log('nama', form['nama'].value)
+            console.log('umur', form['umur'].valueAsNumber)
+            console.log('email', form['email'].value)
+            console.log('pass', form['pass'].value)
+
+            // tampilkan output di html
+            // AKSES OUTPUT
+            let output = document.getElementById("output")
+            console.log(output)
+
+            // textContent VS innerHTML (both mengconvert element jadi string)
+            // Bedanya adalah
+            // console.log(document.body.textContent) // teks aja yg diambil
+            // console.log(document.body.innerHTML) //se html nya diambil,but kalo gada teks gada yg diambil
+
+            // innerHTML // Kalo dibawah pake textContent, h3 nya ngikut masuk ke output
+            output.innerHTML += `
+            <h3>NAMA LENGKAP : ${form['nama'].value}</h3>
+            <h3>UMUR : ${form['umur'].valueAsNumber} Tahun</h3>
+            <h3>EMAIL : ${form['email'].value}</h3>`
+        }
+
+        // REVIEW
+        // NOTE
+        // GET VALUE FROM BUTTON
+        // AKSES
+        let formRadio = document.getElementById("radio")
+        console.log('Radio', formRadio)
+
+        function OnBtnPilih () {
+            // REVIEW
+            // Get Calue dari semua radio button
+            console.log(formRadio['JCWM'].value)
+            console.log(formRadio['JCDS'].value)
+            console.log(formRadio['JCUIUX'].value)
+            console.log(formRadio['JCDM'].value)
+
+            // REVIEW
+            // GET VALUE YG DIPILIH USER AJA
+            // input type radio / checkbox punya atribut "checked"
+            // sebagai penanda bhw radio/checkbox sudah dipilh user
+            console.log('cek jcwm', formRadio['JCWM'].checked) //.checked => true or false
+
+            let program
+            if (formRadio['JCWM'].checked) {
+                program = formRadio['JCWM'].value
+            } else if (formRadio['JCDS'].checked) {
+                program = formRadio['JCDS'].value
+            } else if (formRadio['JCUIUX'].checked) {
+                program = formRadio['JCWM'].value
+            } else if (formRadio['JCDM'].checked) {
+                program = formRadio['JCWM'].value
+            } else {
+                alert("BUTTON BELOM DIPILIH") //pake laert kalo ga mau pake checked di atas
+            }
+
+            console.log('program', program)
+
+            // REVIEW
+            // MANFAATKAN LOOPING BUAT CEK
+            // KARENA KALO DATA BANYAK, PAKE IF KEPANJANGAN
+            
+            let hasilPilih
+            let input = formRadio.getElementsByTagName("input")
+            console.log('inputradio', input) // html coll []
+
+            for (let i = 0; i < input.length; i++) {
+                if (input[i].checked) {
+                    hasilPilih = input[i].value
+                }
+            }
+            console.log('hasilpilihan : ', hasilPilih)
+
+        }
+
+    </script>
+</html>

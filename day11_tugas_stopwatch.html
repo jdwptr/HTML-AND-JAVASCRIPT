@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>STOPWATCH</title>
+    </head>
+    <body>
+        <h1>COUNTDOWN :</h1>
+        <input id="input" type="number" placeholder="INSERT NUMBER">
+        <button id="pencet" onclick="OnBtnMulai()">HITUNG MUNDUR</button>
+        <button onclick="OnBtnStop">STOP</button>
+
+        <h1 id="output">OUTPUT : 0</h1>
+    </body>
+    <script>
+        let btn = document.getElementById('pencet')
+        let out = document.getElementById('output')
+        let waktuJalan
+
+        function OnBtnMulai () {
+            console.log('button di klik')
+            let input = document.body.getElementsByTagName('input')[0]
+            console.log(input)
+
+            let numb = parseInt(input.value)
+            console.log(numb)
+
+            // INGIN MEMBUAT TAMPILAH BERUBAH DI OAYAR TIAP 1 DETIK
+            // TIAP 1 DETIK, ANGKA BERUBAH DI OUTPUT, TEXT CONTENT nya diubah
+            let output = document.getElementById('output')
+            console.log(output)
+
+            waktuJalan = setInterval(() => {
+            if (numb === 0) {
+                clearInterval(waktuJalan)
+            }
+            output.textContent = `OUTPUT : ${numb--}`
+            }, 1000)
+        }
+
+        
+        function OnBtnStop () {
+            console.log('button jalan')
+            clearInterval(waktuJalan)
+        }
+
+    </script>
+</html>

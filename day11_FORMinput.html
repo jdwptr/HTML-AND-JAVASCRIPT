@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+    </head>
+    <body>
+        <!-- <input type="text" name="input-nama" placeholder="Masukan Nama Anda"/>
+        <button>GET VALUE</button>
+        <br>
+
+        <input type="text" name="user-name" placeholder="Masukan Username"/>
+        <input type="email" name="e-mail" placeholder="Masukan Email" />
+        <button>GET EMAIL & USERNAME</button> -->
+
+        <form id="form-reg">
+            <label for="uname">Username :</label>
+            <input type="text" placeholder="UserName"/>
+            <br>
+            <label for="email">Email :</label>
+            <input type="email" placeholder="Email"/>
+            <br>
+            <label for="pass">Password :</label>
+            <input type="password" placeholder="Password"/>
+
+            <button>REGISTER</button>
+        </form>
+    </body>
+    <script>
+        // FORM
+        // get input value form user ? how?
+        
+        // 1# tambahkan .addEventListener di element input
+        // NOTE
+        // event "change" akan mendeteksi perubahan di element, 
+        // ketika kita tekan tombol enter, maka function akan dijlnkan
+
+        //let input = document.body.firstElementChild //sama aja
+        let input = document.body.getElementsByTagName('input')
+
+        input[0].addEventListener("change", () => {
+            console.log('Terjadi Perubahan')
+            console.log(input[0])
+
+            // get value from input
+            console.log(input[0].value)
+        })
+
+        // 2# GET VALUE SETELAH BUTTON DI CLICK
+        let button = document.body.getElementsByTagName('button')
+        button[0].addEventListener('click', () => {
+            console.log("GET VALUE DI KLIK")
+            
+            // get input di klik
+            console.log(input[0].value)
+        })
+
+        // REVIEW COMMENT MATIIN KALO BAWAH DINYALAIN
+        // CASE : BUAT INPUT ELEMENT EMAIL DAN USERNAME
+        // GET VALUE PAS BUTTON DI KLIK
+        
+        input[1].addEventListener('change', () => {
+            console.log("USERNAME BERUBAH")
+            console.log(input[1])
+            console.log(input[1].value)
+        })
+
+        input[2].addEventListener('change', () => {
+            console.log('EMAIL BERUBAH')
+            console.log(input[2])
+            console.log(input[2].value)
+        })
+
+        button[0].addEventListener('click', () => {
+            console.log("GET VALUE EMAIL UNAME DI KLIK")
+            console.log('USERNAME : ', input[1].value)
+            console.log('EMAIL : ', input[2].value)
+
+            document.body.innerHTML += `<h1>Nama : ${input[1].value}</h1>
+                                        <h1>Email : ${input[2].value}</h1>`
+        })
+
+            //REVIEW COMMENT NYALAIAN KALO ATAS DIMATIIN
+        //get value input didalam form
+        let form = document.getElementById('form-reg')
+        let inputForm = form.getElementsByTagName('input') //html coll
+        let btnReg = form.lastElementChild
+
+        btnReg.addEventListener('click', (event) => {
+            console.log('BUTTON REG DI KLIK')
+
+            // Jika button ini di klik, maka page akan kerefresh, why?
+            // Jika button diletakkan didalam tag form,
+            // maka input type button nya jadi submit => default behaviour
+
+            // kalau tidak mau menjalankan submit, pakai => prevent
+            event.preventDefault()
+
+            // AMBIL SEMUA VALUENYA INPUT DIDALAM TAG FORM
+            inputForm[0].value
+            console.log(inputForm[0].value)
+
+            inputForm[1].value
+            console.log(inputForm[1].value)
+
+            inputForm[2].value
+            console.log(inputForm[2].value)
+        })
+        
+
+
+    </script>
+</html>

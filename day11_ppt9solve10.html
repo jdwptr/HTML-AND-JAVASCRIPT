@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SOLVE IT #10</title>
+    </head>
+    <body>
+    <form id="soal1">
+        <h4>1. Siapakah Presiden ketiga Republik Indonesia?</h4>
+        <input type="radio" name="jawaban" value="1"/>Prof.B.J.Habibie
+        <input type="radio" name="jawaban" value="2"/>Abdurrahman Wahid
+        <input type="radio" name="jawaban" value="3"/>Ir.Soekarno
+        <input type="radio" name="jawaban" value="4"/>Joko Widodo
+    </form>
+    <br>
+
+    <form id="soal2">
+        <h4>2. Berikut adalah nama-nama bahasa pemrograman, kecuali...</h4>
+        <input type="radio" name="jawaban" value="1"/>Python
+        <input type="radio" name="jawaban" value="2"/>Micro:bit
+        <input type="radio" name="jawaban" value="3"/>JavaScript
+        <input type="radio" name="jawaban" value="4"/>HTML
+    </form>
+    <br>
+
+    <form id="soal3">
+        <h4>3. Apakah judul lagu yang diduga diplagiat oleh lagu 'Sayang' Via Vallen?</h4>
+        <input type="radio" name="jawaban" value="1"/>Qing Fei De Yi
+        <input type="radio" name="jawaban" value="2"/>Ting Hai
+        <input type="radio" name="jawaban" value="3"/>Mirai E Kiroro
+        <input type="radio" name="jawaban" value="4"/>Hau Siang Hau Siang
+    </form>
+    <br>
+
+    <form id="soal4">
+        <h4>4. Siapakah sosok di balik topeng Batman?</h4>
+        <input type="radio" name="jawaban" value="1"/>Natasha Romanov
+        <input type="radio" name="jawaban" value="2"/>Peter Parker
+        <input type="radio" name="jawaban" value="3"/>Tony Stark
+        <input type="radio" name="jawaban" value="4"/>Bruce Wayne
+    </form>
+    <br>
+    <br>
+
+    <button id="button">SUBMIT</button>
+    <br>
+    <br>
+    <div id="Nilai" style="font-weight: bold;"><h1></h1>
+    </div>
+    </body>
+
+    <script>
+        // get all value inside h4
+        let btn = document.getElementById("button")
+        console.log('submit', btn)
+
+        let jawabanBenar = [1,2,3,4]
+
+        let div = document.getElementById("Nilai")
+
+        btn.addEventListener("click", () =>{
+            // REVIEW
+            // NOTE CARA 2
+
+                // get access to form
+                //let form = document.getElementById("soal1") = rebek
+                let forms = document.forms //singkat
+                console.log('form banyak', forms)
+                // sy akan mencari element dengan tag form di document
+                // HTML collection hasilnya
+
+                // get value dari forms
+                // dipilih oleh user
+                console.log(forms[0].jawaban)
+                console.log('value presiden', forms[0].jawaban.value)
+                // console.log(forms[i].name.value)
+                // jika tdk ada element yg diambil, value = ''
+
+                // biar ga bocor value nya di inspect browser gimandose???
+                // compare value dari array jawabanBenar dgn jawaban dr user
+                let skor = 0
+                for (let i = 0; i < jawabanBenar.length; i++) {
+                    if (forms[i].jawaban.value == jawabanBenar[i]) {
+                        skor += 25
+                    }
+                }
+                console.log('skor :', skor)
+
+                div.innerHTML = `<h1>Nilai Akhir Anda : ${skor}</h1>`
+
+                // HILANGIN INPUT SETELAH SUBMIT
+                // DISABLED
+                // akses semua element input
+                let inputs = forms[0].getElementsByTagName('input') // saya akan mencari semua element html yg ada di dlm tag form
+                // cara sementara, karena lemeent nya masih dikit
+
+                for (let i = 0; i < inputs.length; i++) {
+                    inputs[i].disabled = true
+                }
+
+        })
+
+    </script>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABLE DATA</title>
+    <style>
+        table, tr, th, td
+        {
+            border: 3px solid #e7e6e1;
+            border-collapse: collapse;
+        }
+
+       td
+       {
+            padding: 10px;
+            color: #f7f6e7;
+            text-align: center;
+        }
+
+        th
+        {
+            background-color: #c1c0b9;
+            color: cadetblue;
+            padding: 10px;
+        }
+
+        body
+        {
+            background-color: #537791;
+            padding: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1, h3
+        {
+            text-align: left;
+            color: #f7f6e7;
+        }
+        
+        button
+        {
+            border-radius: 12px;
+        }
+
+        select
+        {
+            width: 175px;
+        }
+    </style>
+</head>
+<body>
+    <!-- harus tau structure -->
+    <!-- Semua dibungkus oleh tag <table> -->
+    <!-- Head => Body => Footer-->
+    <!-- yg harus ada di tabel itu Body -->
+    <!-- Kalo Body ga dibikin, Browser otomatis bikin klalo ditampilin -->
+    <h1>Form Produk Baru</h1>
+    <form id="produkbaru">
+        <input type="text" id="nama" placeholder="Nama Produk">
+        <input type="text" id="img" placeholder="Image">
+        <input type="number" id="harga" placeholder="Harga Produk">
+        <input type="number" id="stok" placeholder="Stok Produk">
+        <button onclick="OnBtnClick(event)">ADD</button>
+    </form>
+
+    <h1>FILTER</h1>
+    <h3>SORT BY HARGA💸</h3>
+    <select id="pilihan">
+        <option value="hargakeatas">ASCENDING☝</option>
+        <option value="hargakebawah">DESCENDING👇</option>
+    </select>
+    <button onclick="OnBtnSort()">SORT</button>
+    <br>
+    <br>
+    <input id="cari" type="text" placeholder="Search Name Here">
+    <button onclick="OnBtnSearch()">SEARCH</button>
+
+    <h1>TABLE</h1>
+    <table id="daftarprod">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Produk</th>
+                <th>Image</th>
+                <th>Harga</th>
+                <th>Stok</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <h1>USERCART</h1>
+    <table id="usercart">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Produk</th>
+                <th>Image</th>
+                <th>Harga</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    
+    <br>
+    <button id="cetak" onclick="OnBtnPrint()" disabled>PRINT INVOICE</button>
+    <br>
+    <p id="bon">RECEIPT :</p>
+    <br>
+    <input type="number" placeholder="TOTAL UANG" id="uang" hidden>
+    <button onclick="OnBtnCekout()" id="cekout" hidden>CHECK OUT</button>
+</body>
+    <script src="databaseHP.js"></script>
+    <script src="function_prod.js"></script>
+    <script src="function_cart.js"></script>
+    <script src="function_transaction.js"></script>
+</html>

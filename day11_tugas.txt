@@ -1,0 +1,17 @@
+1. BIKIN KALKULATOR SEDERHANA untuk konversi mata uang
+=> minta input : jumlah uang & jenis mata uang (select option)
+=> minta konversi kemana => IDR, USD, WON (select option)
+=> OUTPUT : uang hasil konversi
+
+2. BIKIN APLIKASI COUNTER HITUNG MUNDUR
+=> ada button start
+=> input : masukan angka : 10
+=> output : hitung mundur dari 10 -> 0
+=> keyword hint : setInterval
+
+3. TAMPILKAN PATTERN DI HTML (n=5)
+*
+**
+***
+****
+*****

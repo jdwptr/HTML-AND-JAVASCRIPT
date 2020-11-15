@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SEGITIGA SIKU BINTANG</title>
+    </head>
+    <body>
+        <div id="hasil"></div>
+    </body>
+    <script>
+        let n = 5
+        let pattern = ''
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j <= i; j++) {
+                pattern += '* '
+            }
+            pattern += '<br>'
+        }
+        console.log (pattern)
+
+        let div = document.getElementById("hasil")
+        div.innerHTML = pattern
+    </script>
+</html>
+

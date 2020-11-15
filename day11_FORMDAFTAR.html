@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FORMULIR PENDAFTARAN</title>
+    </head>
+    <body>
+        <h1>FORMULIR PENDAFTARAN ANGGOTA BARU</h1>
+        <form id="data-diri">
+            <fieldset>
+                <legend>BIO DATA</legend>
+                <input type="text" placeholder="Nama Depan"/>
+                <input type="text" placeholder="Nama Belakang"/>
+                <input type="number" placeholder="Nomor Telepon"/> 
+                <input type="number" placeholder="Anak Ke"/>
+                <!-- walaupun input type number nanti pas di get value tetep string jd hrs di parseInt -->
+
+                <!-- MINTA CHECKBOX UNTUK GENDER -->
+                <!-- dikasih name='gender' biar yg bs dipilih slh satu button aja -->
+                <br>
+                <input type="radio" name="gender" value="Laki - Laki"/>Laki - Laki
+                <input type="radio" name="gender" value="Perempuan"/>Perempuan
+            </fieldset>
+            <fieldset>
+                <legend>ALAMAT</legend>
+                <input type="text" placeholder="Alamat 1"/>
+            </fieldset>
+            <button>SUBMIT</button>
+        </form>
+        <div id="data-diri-output">
+            <h1>DATA OUTPUT :</h1>
+        </div>
+    </body>
+    <script> //NOTE
+        // get all value inside form
+        let form = document.getElementById("data-diri")
+        let btnSubmit = form.lastElementChild //anak terakhir dari form
+
+        btnSubmit.addEventListener("click", (event) => {
+            event.preventDefault()
+            console.log("Submit on Click")
+
+            //get value di data diri
+            let inputBioData = form.firstElementChild.getElementsByTagName("input")
+            console.log('BIODATA', inputBioData)
+
+            //get value 
+            console.log(inputBioData[0].value)
+            console.log(inputBioData[1].value)
+            console.log(inputBioData[2].value)
+            console.log(inputBioData[3].value)
+
+            // REVIEW
+            // get value from radio button genderdua duanya
+            console.log(inputBioData[4].value)
+            console.log(inputBioData[5].value)
+
+            // gimana kalo mau value slh satu gender aja??
+            // checked = apakah radio button sudah diplih (true sudah, false belum)
+            let gender
+            if (inputBioData[4].checked) {
+                gender = inputBioData[4].value
+            } else {
+                gender = inputBioData[5].value
+            }
+            console.log('Gender :', gender)
+
+            // get value alamat
+            let inputAlamat = form.firstElementChild.nextSibling.nextSibling.getElementsByTagName("input")
+            console.log('Alamat :', inputAlamat)
+
+            // tampilkan di div data output
+            let div = document.getElementById("data-diri-output")
+            console.log('Data Diri Output:', div)
+
+            div.innerHTML += `
+            <h2>Nama Lengkap : ${inputBioData[0].value} ${inputBioData[1].value}<br>
+            Alamat : ${inputAlamat[0].value}<br>
+            Nomor Telepon : ${inputBioData[2].valueAsNumber}<br>
+            Anak Ke - : ${inputBioData[3].valueAsNumber}<br>
+            Gender : ${gender}
+            </h2>
+            `
+        })
+
+        console.log(form)
+        console.log(form.firstElementChild)
+
+
+    </script>
+</html>

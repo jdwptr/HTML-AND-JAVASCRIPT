@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>🤑CURRENCY CONVERSION🤑</title>
+        <style>
+            body{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align: center;">🤑CURRENCY CONVERSION CALCULATOR🤑</h1>
+        <br>
+
+        <form>
+            <label>MASUKAN UANG :</label>
+            <input id="uang" type="number" placeholder="INSERT MONEY HERE">
+            <br>
+            <select>
+                <option value="usd">USD $</option>
+                <option value="idr">IDR Rp</option>
+                <option value="krw">KRW ₩</option>
+            </select>
+            KONVERSI KE :
+            <select>
+                <option value="usd">USD $</option>
+                <option value="idr">IDR Rp</option>
+                <option value="krw">KRW ₩</option>
+            </select>
+        </form>
+        <br>
+        <br>
+        <button onclick="OnBtnConvert()">CONVERT 💲💲</button>
+        <h1 id="output">OUTPUT :</h1>
+    </body>
+    <script>
+        // BIKIN DATABASE U/ SIMPAN RATE KONVERSI
+        let data = [
+            {
+                ori : 'usd',
+                to : 'idr',
+                rate : 14112.85
+            },
+            {
+                ori : 'idr',
+                to : 'usd',
+                rate : 0.00007
+            },
+            {
+                ori : 'usd',
+                to : 'krw',
+                rate : 1114.40
+            },
+            {
+                ori : 'krw',
+                to : 'usd',
+                rate : 0.00090
+            },
+            {
+                ori : 'idr',
+                to : 'krw',
+                rate : 0.078
+            },
+            {
+                ori : 'krw',
+                to : 'idr',
+                rate : 12.66
+            }]
+
+        function OnBtnConvert () {
+            console.log("btn konvert")
+
+            // MAU MELAKUKAN KONVERSI
+            // GET VALUE FROM INPUT & SELECT
+            let form = document.forms[0] // html coll
+            console.log(form)
+            let select = form.getElementsByTagName("select")
+            console.log(select)
+
+            // GET VALUE FORM INPUT
+            let money = parseInt(form['uang'].value)
+            console.log(money)
+
+            // GET VALUE FROM SELECT
+            let mataUangAsli = select[0].value
+            console.log(mataUangAsli)
+
+            let konvertKe = select[1].value
+            console.log(konvertKe)
+
+            // CARA LAKUKAN KONVERSI
+            // PERLU CEK APAKAH USER MEMILIH KONVERSI KE MATAUANG YG SAMA
+            let result
+
+            if (mataUangAsli === konvertKe) {
+                result = money
+            } else {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].ori === mataUangAsli && data[i].to === konvertKe) {
+                        result = money * data[i].rate
+                    }
+                }
+            }
+            console.log(result)
+            console.log(result.toExponential())
+
+            // TAMPILKAN KE HTML
+            document.getElementById('output').textContent = `Output : ${result}`
+        }
+
+       
+    </script>
+</html>
